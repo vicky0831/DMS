@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('reminders', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('tracked_item_id')->constrained()->cascadeOnDelete();
+            $table->dateTime('due_at');
+            $table->string('channel');
+            $table->string('status')->default('pending');
+            $table->unsignedInteger('scheduled_days_before');
+            $table->dateTime('sent_at')->nullable();
+            $table->text('last_error')->nullable();
+            $table->timestamps();
+
+            $table->index(['company_id', 'due_at']);
+            $table->index(['tracked_item_id', 'status']);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('reminders');
+    }
+};

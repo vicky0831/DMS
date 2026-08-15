@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "useDefineForClassFields": true,
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "strict": true,
+        "jsx": "react-jsx",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "types": ["vite/client"],
+        "baseUrl": "."
+    },
+    "include": ["resources/js/**/*.ts", "resources/js/**/*.tsx", "resources/js/**/*.d.ts"],
+    "exclude": ["node_modules", "vendor"]
+}
